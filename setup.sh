@@ -1,0 +1,1 @@
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/ge/anaconda3/envs/isaac/lib/

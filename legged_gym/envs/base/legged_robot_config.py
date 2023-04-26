@@ -65,6 +65,8 @@ class LeggedRobotCfg(BaseConfig):
         # trimesh only:
         slope_treshold = 0.75 # slopes above this threshold will be corrected to vertical surfaces
 
+        grid_0 = False
+
     class commands:
         curriculum = False
         max_curriculum = 1.

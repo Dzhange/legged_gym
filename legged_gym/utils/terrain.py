@@ -62,6 +62,8 @@ class Terrain:
             self.curiculum()
         elif cfg.selected:
             self.selected_terrain()
+        elif cfg.grid_0:
+            self.grid_0()
         else:    
             self.randomized_terrain()   
         
@@ -89,6 +91,25 @@ class Terrain:
                 choice = j / self.cfg.num_cols + 0.001
 
                 terrain = self.make_terrain(choice, difficulty)
+                self.add_terrain_to_map(terrain, i, j)
+
+    def grid_0(self):                
+
+        # stone_distance = 0.05 if difficulty==0 else 0.1
+        stone_distance = 0.1
+        
+        for j in range(self.cfg.num_cols):
+            for i in range(self.cfg.num_rows):
+                difficulty = (i / self.cfg.num_rows) / 2 + 0.3
+                stepping_stones_size = 1.5 * (1.05 - difficulty)
+
+                terrain = terrain_utils.SubTerrain(   "terrain",
+                        width=self.width_per_env_pixels,
+                        length=self.width_per_env_pixels,
+                        vertical_scale=self.cfg.vertical_scale,
+                        horizontal_scale=self.cfg.horizontal_scale)                    
+                terrain_utils.stepping_stones_terrain(terrain, stone_size=stepping_stones_size, stone_distance=stone_distance, max_height=0., platform_size=4.)
+
                 self.add_terrain_to_map(terrain, i, j)
 
     def selected_terrain(self):
